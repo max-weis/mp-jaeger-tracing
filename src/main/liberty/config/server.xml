@@ -6,10 +6,11 @@
     </featureManager>
 
     <httpEndpoint id="defaultHttpEndpoint"
+                  host="*"
                   httpPort="9080"
                   httpsPort="9443"/>
 
-    <webApplication location="${project.name}.war" contextRoot="/">
+    <webApplication location="tracing-demo.war" contextRoot="/tracing-demo">
         <classloader apiTypeVisibility="+third-party" />
     </webApplication>
     <mpMetrics authentication="false"/>

@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+
+  tracing-demo:
+    image: maxweis/tracing-demo:1.0-SNAPSHOT
+    ports:
+      - 9080:9080
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.18.1
+    ports:
+      - 16686:16686
