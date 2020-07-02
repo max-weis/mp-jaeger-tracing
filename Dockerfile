@@ -1,4 +1,7 @@
-FROM open-liberty:kernel-java8-openj9
+FROM openjdk:8-jre-alpine
 
-COPY --chown=1001:0 src/main/liberty/config /config/
-COPY --chown=1001:0 target/tracing-demo.war /config/apps
+COPY target/tracing-demo.jar /opt/tracing-demo.jar
+
+EXPOSE 9080
+
+ENTRYPOINT exec java -Djava.net.preferIPv4Stack=true -Djava.net.preferIPv4Addresses=true -jar /opt/tracing-demo.jar

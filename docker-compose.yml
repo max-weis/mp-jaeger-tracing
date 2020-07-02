@@ -3,10 +3,18 @@ services:
 
   tracing-demo:
     image: maxweis/tracing-demo:1.0-SNAPSHOT
+    environment:
+      - JAEGER_AGENT_HOST=jaeger
+      - JAEGER_SERVICE_NAME=tracing-demo
+      - JAEGER_REPORTER_LOG_SPANS=true
+      - JAEGER_SAMPLER_TYPE=const
+      - JAEGER_SAMPLER_PARAM=1
     ports:
-      - 9080:9080
+      - 9088:9080
 
   jaeger:
-    image: jaegertracing/all-in-one:1.18.1
+    image: jaegertracing/all-in-one:latest
     ports:
-      - 16686:16686
+      - "16686:16686"
+    environment:
+      - COLLECTOR_ZIPKIN_HTTP_PORT=9411
