@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<server description="${project.name}">
-
+<server>
     <featureManager>
-        <feature>microProfile-3.2</feature>
+        <feature>jaxrs-2.1</feature>
+        <feature>jsonp-1.1</feature>
+        <feature>cdi-2.0</feature>
+
+        <feature>mpOpenTracing-1.3</feature>
     </featureManager>
+
+    <opentracingZipkin/>
 
     <httpEndpoint id="defaultHttpEndpoint"
                   host="*"
@@ -11,15 +15,6 @@
                   httpsPort="9443"/>
 
     <webApplication location="tracing-demo.war" contextRoot="/tracing-demo">
-        <classloader apiTypeVisibility="+third-party" />
+        <classloader apiTypeVisibility="api,ibm-api,spec,stable,third-party"/>
     </webApplication>
-    <mpMetrics authentication="false"/>
-
-    <!-- This is the keystore that will be used by SSL and by JWT. -->
-    <keyStore id="defaultKeyStore" location="public.jks" type="JKS" password="atbash" />
-
-
-    <!-- The MP JWT configuration that injects the caller's JWT into a ResourceScoped bean for inspection. -->
-    <mpJwt id="jwtUserConsumer" keyName="theKeyId" audiences="targetService" issuer="${jwt.issuer}"/>
-
 </server>
